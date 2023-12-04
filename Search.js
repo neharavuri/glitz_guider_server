@@ -64,8 +64,12 @@ const Search = (app) => {
           return e;
         })
         brand = nameArr.join(" ");
+        type = e.product_type.charAt(0).toUpperCase() + e.product_type.substring(1)
+        if (e.product_type == "lip_liner") {
+          type = "Lip Liner"
+        }
         return {price: e.price, id: e.id, name: shortName, longName: e.name, brand: brand,
-           type: e.product_type.charAt(0).toUpperCase() + e.product_type.substring(1), image: e.api_featured_image}
+           type: type, image: e.api_featured_image}
       }))}))});
     
     app.get('/product/:id', async (req, res) => {

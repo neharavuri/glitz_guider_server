@@ -1,6 +1,7 @@
 import axios from "axios";
 const Search = (app) => {
     app.get('/search/:index', (req, res) => {
+      let link = "http://makeup-api.herokuapp.com/api/v1/products.json"
       let i = req.params.index
       let start = 0;
       let end = 20;
@@ -8,24 +9,40 @@ const Search = (app) => {
         end = end * i;
         start = end - 20;
       }
-      axios.get("http://makeup-api.herokuapp.com/api/v1/products.json")
+      if (req.query.brand) {
+        if (!(link.includes("?"))){
+          link = link + "?brand="+req.query.brand
+        }
+        else{
+          link = link + "&brand="+req.query.brand
+        }
+      }
+      if (req.query.product_type) {
+        if (!(link.includes("?"))){
+          link = link + "?product_type="+req.query.product_type
+        }
+        else{
+          link = link + "&product_type="+req.query.product_type
+        }
+      }
+      if (req.query.min) {
+        if (!(link.includes("?"))){
+          link = link + "?price_greater_than="+req.query.min
+        }
+        else{
+          link = link + "&price_greater_than="+req.query.min
+        }
+      }
+      if (req.query.max) {
+        if (!(link.includes("?"))){
+          link = link + "?price_less_than="+req.query.min
+        }
+        else{
+          link = link + "&price_less_than="+req.query.min
+        }
+      }
+      axios.get(link)
       .then(response => res.json(response.data.slice(start, end)
-      .filter(function(e) {
-        let tf = true;
-        if (req.query.brand) {
-          tf = tf && (e.brand == req.query.brand);
-        }
-        if (req.query.product_type) {
-          tf = tf && (e.product_type == req.query.product_type);
-        }
-        if (req.query.min) {
-          tf = tf && (e.price >= req.query.min);
-        }
-        if (req.query.max) {
-          tf = tf && (e.price <= req.query.max)
-        }
-        return tf;
-      })
       .map((e) => ({price: e.price, id: e.id, name: e.name, brand: e.brand, type: e.product_type, image: e.api_featured_image}))));
     })
     

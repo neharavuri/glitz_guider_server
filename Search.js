@@ -17,28 +17,28 @@ const Search = (app) => {
           link = link + "&brand="+req.query.brand
         }
       }
-      if (req.query.product_type) {
+      if (req.query.productType) {
         if (!(link.includes("?"))){
-          link = link + "?product_type="+req.query.product_type
+          link = link + "?product_type="+req.query.productType
         }
         else{
-          link = link + "&product_type="+req.query.product_type
+          link = link + "&product_type="+req.query.productType
         }
       }
-      if (req.query.min) {
+      if (req.query.minPrice) {
         if (!(link.includes("?"))){
-          link = link + "?price_greater_than="+req.query.min
+          link = link + "?price_greater_than="+req.query.minPrice
         }
         else{
-          link = link + "&price_greater_than="+req.query.min
+          link = link + "&price_greater_than="+req.query.minPrice
         }
       }
-      if (req.query.max) {
+      if (req.query.maxPrice) {
         if (!(link.includes("?"))){
-          link = link + "?price_less_than="+req.query.max
+          link = link + "?price_less_than="+req.query.maxPrice
         }
         else{
-          link = link + "&price_less_than="+req.query.max
+          link = link + "&price_less_than="+req.query.maxPrice
         }
       }
       axios.get(link)

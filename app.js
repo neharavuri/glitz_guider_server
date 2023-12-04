@@ -2,9 +2,11 @@ import express from 'express';
 import Search from "./Search.js";
 import cors from "cors";
 import mongoose from "mongoose";
-mongoose.connect("mongodb://127.0.0.1:27017/kanbas");
+mongoose.connect("mongodb+srv://neha:ravuri@kanbas.xggi1tt.mongodb.net/glitz_guide?retryWrites=true&w=majority");
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: true }));
+app.use(
+    cors({ credentials: true, origin: true })
+  );
 Search(app);
 app.listen(4000)

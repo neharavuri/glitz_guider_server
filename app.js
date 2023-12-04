@@ -12,6 +12,7 @@ app.use(express.json());
 app.use(cors({ credentials: true, origin: true }));
 const sessionOptions = {
   secret: "any string",
+  cookie: { secure: false },
   resave: false,
   saveUninitialized: false,
 };

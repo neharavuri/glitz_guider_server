@@ -64,7 +64,8 @@ const Search = (app) => {
           return e;
         })
         brand = nameArr.join(" ");
-        return {price: e.price, id: e.id, name: shortName, longName: e.name, brand: brand, type: e.product_type, image: e.api_featured_image}
+        return {price: e.price, id: e.id, name: shortName, longName: e.name, brand: brand,
+           type: e.product_type.charAt(0).toUpperCase() + e.product_type.substring(1), image: e.api_featured_image}
       }))}))});
     
     app.get('/product/:id', async (req, res) => {

@@ -35,10 +35,10 @@ const Search = (app) => {
       }
       if (req.query.max) {
         if (!(link.includes("?"))){
-          link = link + "?price_less_than="+req.query.min
+          link = link + "?price_less_than="+req.query.max
         }
         else{
-          link = link + "&price_less_than="+req.query.min
+          link = link + "&price_less_than="+req.query.max
         }
       }
       axios.get(link)

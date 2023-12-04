@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     email: String,
     role: {
       type: String,
-      enum: ["FOLLOWER", "INFLUENCER"],
+      enum: ["follower", "influencer"],
       default: "USER" },
   },
   { collection: "users" });

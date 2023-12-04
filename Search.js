@@ -28,5 +28,13 @@ const Search = (app) => {
       })
       .map((e) => ({price: e.price, id: e.id, name: e.name, brand: e.brand, type: e.product_type, image: e.api_featured_image}))));
     })
+    
+    app.get('/product/:id', async (req, res) => {
+      let pid = req.params.id
+      const response = await axios.get("http://makeup-api.herokuapp.com/api/v1/products.json");
+      return res.json(response.data.filter(function (e) {
+        return e.id == pid;
+      }));
+    })
   }
 export default Search;

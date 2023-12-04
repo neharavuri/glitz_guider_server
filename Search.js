@@ -26,7 +26,7 @@ const Search = (app) => {
         }
         return tf;
       })
-      .map((e) => ({price: e.price, id: e.id, name: e.name, brand: e.brand, type: e.product_type, image: e.api_featured_image}))));
+      .map((e) => ({price: e.price, id: e.id, name: e.name, brand: e.brand, type: e.product_type, image: "https:" + e.api_featured_image}))));
     })
   }
 export default Search;

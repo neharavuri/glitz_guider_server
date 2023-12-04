@@ -5,12 +5,7 @@ export const findUserById = (userId) => model.findById(userId);
 export const findUserByUsername = (username) =>
   model.findOne({ username: username });
 export const findUserByCredentials = (username, password) =>{
-    try{
-        model.findOne({ username, password })
-    }
-    catch (err) {
-        throw new Error("user not found");
-    }
+    model.findOne({ username, password })
 };
 export const updateUser = (userId, user) =>
   model.updateOne({ _id: userId }, { $set: user });

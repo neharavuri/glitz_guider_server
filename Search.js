@@ -48,7 +48,7 @@ const Search = (app) => {
     app.get('/product/:id', async (req, res) => {
       let pid = req.params.id
       const response = await axios.get("http://makeup-api.herokuapp.com/api/v1/products.json");
-      return res.json(response.data.filter(function (e) {
+      return res.json(response.data.find(function (e) {
         return e.id == pid;
       }));
     })

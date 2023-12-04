@@ -46,6 +46,17 @@ const Search = (app) => {
         return !(r.price == 0.0); })
       .slice(start, end)
       .map(function(e) {
+        let longName = e.name
+        let longArr = longName.split(" ");
+        let count = 0;
+        let shortArr = []
+        longArr.forEach((e) => {
+          if (count < 5) {
+            count = count + 1;
+            shortArr.push(e);
+          }
+        });
+        let shortName = shortArr.join(" ");
         let brand = e.brand;
         let nameArr = brand.split(" ");
         nameArr = nameArr.map((e) => {
@@ -53,7 +64,7 @@ const Search = (app) => {
           return e;
         })
         brand = nameArr.join(" ");
-        return {price: e.price, id: e.id, name: e.name, brand: brand, type: e.product_type, image: e.api_featured_image}
+        return {price: e.price, id: e.id, name: shortName, longName: e.name, brand: brand, type: e.product_type, image: e.api_featured_image}
       }))}))});
     
     app.get('/product/:id', async (req, res) => {

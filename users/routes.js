@@ -59,6 +59,6 @@ function UserRoutes(app) {
   app.post("/signup", signup);
   app.post("/signin", signin);
   app.post("/signout", signout);
-  app.get("/account", account);
+  app.post("/account", account);
 }
 export default UserRoutes;

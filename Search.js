@@ -58,12 +58,12 @@ const Search = (app) => {
         });
         let shortName = shortArr.join(" ");
         let brand = e.brand;
-        let nameArr = brand.split(" ");
-        nameArr = nameArr.map((e) => {
-          e = e.charAt(0).toUpperCase() + e.substring(1);
-          return e;
-        })
-        brand = nameArr.join(" ");
+        // let nameArr = brand.split(" ");
+        // nameArr = nameArr.map((e) => {
+        //   e = e.charAt(0).toUpperCase() + e.substring(1);
+        //   return e;
+        // })
+        // brand = nameArr.join(" ");
         let type = e.product_type.charAt(0).toUpperCase() + e.product_type.substring(1)
         if (e.product_type == "lip_liner") {
           type = "Lip Liner"

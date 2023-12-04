@@ -42,8 +42,19 @@ const Search = (app) => {
         }
       }
       axios.get(link)
-      .then(response => res.json({total: response.data.length, data: (response.data.slice(start, end)
-      .map((e) => ({price: e.price, id: e.id, name: e.name, brand: e.brand, type: e.product_type, image: e.api_featured_image})))}))});
+      .then(response => res.json({total: response.data.length, data: (response.data.filter(function (r) {
+        return !(r.price == 0.0); })
+      .slice(start, end)
+      .map(function(e) {
+        let brand = e.brand;
+        let nameArr = brand.split(" ");
+        nameArr = nameArr.map((e) => {
+          e = e.charAt(0).toUpperCase() + e.substring(1);
+          return e;
+        })
+        brand = nameArr.join(" ");
+        return {price: e.price, id: e.id, name: e.name, brand: brand, type: e.product_type, image: e.api_featured_image}
+      }))}))});
     
     app.get('/product/:id', async (req, res) => {
       let pid = req.params.id

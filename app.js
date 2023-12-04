@@ -12,10 +12,16 @@ app.use(express.json());
 app.use(cors({ credentials: true, origin: true }));
 const sessionOptions = {
   secret: "any string",
-  cookie: { secure: false },
   resave: false,
   saveUninitialized: false,
 };
+if (process.env.NODE_ENV !== "development") {
+  sessionOptions.proxy = true;
+  sessionOptions.cookie = {
+    sameSite: "none",
+    secure: true,
+  };
+}
 app.use(session(sessionOptions));
 Search(app);
 UserRoutes(app);

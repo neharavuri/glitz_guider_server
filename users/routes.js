@@ -1,3 +1,4 @@
+import { response } from "express";
 import * as dao from "./dao.js";
 let currentUser = null;
 function UserRoutes(app) {
@@ -35,7 +36,7 @@ function UserRoutes(app) {
     }
     const currentUser = await dao.createUser(req.body);
     req.session["currentUser"] = currentUser;
-    res.json(currentUser);
+    res.json(200);
   };
   const signout = (req, res) => {
     req.session.destroy();

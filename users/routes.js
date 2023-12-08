@@ -11,6 +11,11 @@ function UserRoutes(app) {
     const users = await dao.findAllUsers();
     res.json(users);
   };
+
+  const findInfluencers = async (req,res) => {
+    const influencer = await dao.findInfluencers();
+    res.json(influencer);
+  }
   const updateUser = async (req, res) => {
     const { userId } = req.params;
     const status = await dao.updateUser(userId, req.body);
@@ -55,6 +60,7 @@ function UserRoutes(app) {
   app.post("/signin", signin);
   app.post("/signout", signout);
   app.post("/account", account);
-  app.post("/users/update/:userId", updateUser)
+  app.post("/users/update/:userId", updateUser);
+  app.get("/influencers", findInfluencers);
 }
 export default UserRoutes;

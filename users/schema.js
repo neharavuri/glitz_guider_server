@@ -5,10 +5,12 @@ const userSchema = new mongoose.Schema({
     firstName: String,
     lastName: String,
     email: String,
+    instagram: String,
+    bio: String,
     role: {
       type: String,
       enum: ["follower", "influencer"],
-      default: "USER" },
+      default: "follower" },
   },
   { collection: "users" });
 export default userSchema;

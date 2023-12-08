@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
-const blogSchema = new mongoose.Schema({
+const reviewSchema = new mongoose.Schema({
     username: String,
-    firstName: String,
-    lastName: String,
+    pid: String,
+    review: String,
     content: String
   },
   { collection: "blog_posts" });

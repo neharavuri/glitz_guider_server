@@ -45,7 +45,7 @@ function UserRoutes(app) {
     } else {
       const currentUser = await dao.createUser(req.body);
       req.session["currentUser"] = currentUser;
-      res.json(200).json({ username: currentUser.username });
+      res.json({ username: currentUser.username, role: currentUser.role });
     }
   };
   const signout = (req, res) => {

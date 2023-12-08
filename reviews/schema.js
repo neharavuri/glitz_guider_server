@@ -6,5 +6,5 @@ const reviewSchema = new mongoose.Schema({
     content: String
   },
   { collection: "blog_posts" });
-export default blogSchema;
+export default reviewSchema;
 

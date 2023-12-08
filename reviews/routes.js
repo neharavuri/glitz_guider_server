@@ -31,11 +31,20 @@ function BlogRoutes(app) {
     res.json(rev);
   }
 
+  const updateReview = async (req, res) => {
+    const { id } = req.params;
+    const status = await dao.updateReview(id, req.body);
+    const updatedReview = await dao.findReviewById(id);
+    res.json(updatedReview);
+  };
+
+
 
   app.get("/reviews", getReviews);
   app.get("/reviews/:username", getReviewsByUsername);
   app.post("/reviews", writeReview);
   app.get("/reviews/product/:pid", getReviewsByProduct);
   app.delete("/reviews/:id", deleteReview);
+  app.put("/review/:id", updateReview);
 }
 export default BlogRoutes;

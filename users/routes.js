@@ -20,8 +20,8 @@ function UserRoutes(app) {
     const { username } = req.params;
     const user = await dao.findUserByUsername(username);
     const status = await dao.updateUser(user.id, req.body);
-    user = await dao.findUserByUsername(username);
-    res.json(user);
+    const updatedUser = await dao.findUserByUsername(username);
+    res.json(updatedUser);
   };
   const signin = async (req, res) => {
     const { username, password } = req.body;

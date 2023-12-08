@@ -3,8 +3,7 @@ const reviewSchema = new mongoose.Schema({
     username: String,
     pid: String,
     review: String,
-    content: String
   },
-  { collection: "blog_posts" });
+  { collection: "reviews" });
 export default reviewSchema;
 

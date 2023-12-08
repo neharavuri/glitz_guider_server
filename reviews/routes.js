@@ -1,29 +1,40 @@
 import { response } from "express";
 import * as dao from "./dao.js";
 function BlogRoutes(app) {
-  const deletePost = async (req, res) => {
-    const status = await dao.deletePost(req.params.postId);
-    res.json(status);
-  };
 
-  const findAllPostsByUsername = async (req, res) => {
-    const users = await dao.findPostByUsername(req.params.username);
-    res.json(users);
-  };
-
-  const findAllPosts = async (req, res) => {
-    const users = await dao.findAllPosts();
-    res.json(users);
-  };
-
-  const createPost = async (req, res) => {
-    const post = dao.createPost(req.body);
-    res.json(post);
+  const getReviews = async (req,res) => {
+    const reviews = await dao.findAllReviews();
+    res.json(reviews);
   }
 
-  app.post("/post/new", createPost);
-  app.get("/posts/:username", findAllPostsByUsername);
-  app.get("/posts", findAllPosts);
-  app.delete("/post/:postId", deletePost);
+  const getReviewsByUsername = async (req,res) => {
+    const {username} = req.params;
+    const reviews = await dao.findReviewsByUsername(username);
+    res.json(reviews);
+  }
+
+  const writeReview = async (req,res) => {
+    const currReview = dao.createReview(req.body);
+    res.json(currReview);
+  }
+  
+  const getReviewsByProduct = async (req, res) => {
+    const {pid} = req.params;
+    const reviews = dao.findReviewsByProductId(pid);
+    res.json(reviews);
+  }
+
+  const deleteReview = async (req, res) => {
+    const {id} = req.params;
+    const rev = await dao.deleteReview(id);
+    res.json(rev);
+  }
+
+
+  app.get("/reviews", getReviews);
+  app.get("/reviews/:username", getReviewsByUsername);
+  app.post("/reviews/new", writeReview);
+  app.get("/reviews/product/:pid", getReviewsByProduct);
+  app.delete("/reviews/:id", deleteReview);
 }
 export default BlogRoutes;

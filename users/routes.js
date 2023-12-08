@@ -53,11 +53,12 @@ function UserRoutes(app) {
   //app.post("/api/users", createUser);
   app.get("/users", findAllUsers);
   //app.get("/api/users/:userId", findUserById);
-  app.put("/api/users/:userId", updateUser);
+  app.post("/api/users/:userId", updateUser);
   app.delete("/api/users/:userId", deleteUser);
   app.post("/signup", signup);
   app.post("/signin", signin);
   app.post("/signout", signout);
   app.post("/account", account);
+  app.post("/users/update", updateUser)
 }
 export default UserRoutes;

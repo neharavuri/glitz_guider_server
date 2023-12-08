@@ -34,7 +34,7 @@ function BlogRoutes(app) {
 
   app.get("/reviews", getReviews);
   app.get("/reviews/:username", getReviewsByUsername);
-  app.post("/reviews/new", writeReview);
+  app.post("/reviews", writeReview);
   app.get("/reviews/product/:pid", getReviewsByProduct);
   app.delete("/reviews/:id", deleteReview);
 }

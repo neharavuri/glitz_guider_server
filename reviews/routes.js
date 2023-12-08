@@ -19,8 +19,10 @@ function BlogRoutes(app) {
   }
   
   const getReviewsByProduct = async (req, res) => {
-    const {pid} = req.params;
-    const reviews = dao.findReviewsByProductId(pid);
+    //const {pid} = req.params;
+
+    const reviews = await dao.findReviewsByProductId("1048");
+    console.log(reviews);
     res.json(reviews);
   }
 

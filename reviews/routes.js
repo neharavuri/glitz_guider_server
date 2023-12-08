@@ -45,6 +45,6 @@ function BlogRoutes(app) {
   app.post("/reviews", writeReview);
   app.get("/reviews/product/:pid", getReviewsByProduct);
   app.delete("/reviews/:id", deleteReview);
-  app.put("/review/:id", updateReview);
+  app.put("/reviews/:id", updateReview);
 }
 export default BlogRoutes;

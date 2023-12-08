@@ -61,8 +61,8 @@ function UserRoutes(app) {
   app.post("/signup", signup);
   app.post("/signin", signin);
   app.post("/signout", signout);
-  app.post("/users/account", account);
-  app.put("/users/update/:username", updateUser);
+  app.get("/users/account", account);
+  app.put("/users/:username", updateUser);
   app.get("/influencers", findInfluencers);
 }
 export default UserRoutes;

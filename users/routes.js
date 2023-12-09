@@ -54,6 +54,12 @@ function UserRoutes(app) {
     req.session.destroy();
     res.json(200);
   };
+
+  const getPublic = async (req,res) => {
+    const {username} = req.params;
+    const user = await dao.findUserByUsername(username);
+    res.json({username: user.username, role: user.role, bio: user.bio, website: user.website, instagram: user.instagram});
+  }
   //app.post("/api/users", createUser);
   app.get("/users", findAllUsers);
   //app.get("/api/users/:userId", findUserById);
@@ -62,6 +68,7 @@ function UserRoutes(app) {
   app.post("/signin", signin);
   app.post("/signout", signout);
   app.get("/users/account", account);
+  app.get("/users/:username", getPublic)
   app.put("/users/:username", updateUser);
   app.get("/influencers", findInfluencers);
 }

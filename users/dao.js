@@ -13,3 +13,7 @@ export const findInfluencers = () => model.find({role: "influencer"});
 export const updateUser = (userId, user) =>
   model.updateOne({ _id: userId }, { $set: user });
 export const deleteUser = (userId) => model.deleteOne({ _id: userId });
+export const addFollower = (follower, influencer) => model.updateOne(
+  { _id: influencer._id }, 
+  { $push: { followers: follower.username } }
+);

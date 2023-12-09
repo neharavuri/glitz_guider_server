@@ -21,6 +21,7 @@ function UserRoutes(app) {
     const user = await dao.findUserByUsername(username);
     const status = await dao.updateUser(user.id, req.body);
     const updatedUser = await dao.findUserByUsername(username);
+    req.session["currentUser"] = updatedUser;
     res.json(updatedUser);
   };
   const signin = async (req, res) => {
@@ -36,8 +37,6 @@ function UserRoutes(app) {
   };
 
   const account = async (req, res) => {
-    console.log("CURR");
-    console.log(req.session["currentUser"]);
     res.json(req.session["currentUser"]);
   };
   const signup = async (req, res) => {
@@ -65,6 +64,15 @@ function UserRoutes(app) {
     const user = await dao.findUserByUsername(username);
     res.json({username: user.username, role: user.role, bio: user.bio, website: user.website, instagram: user.instagram});
   }
+
+  const addFollower = async (req, res) => {
+    const {influencer} = req.params;
+    const influencerUser = await dao.findUserByUsername(influencer);
+    const user = await dao.findUserByUsername("nravuri");
+    console.log(user);
+    const status = await dao.addFollower(user, influencerUser);
+    res.json(status);
+  }
   //app.post("/api/users", createUser);
   app.get("/users", findAllUsers);
   //app.get("/api/users/:userId", findUserById);
@@ -77,5 +85,6 @@ function UserRoutes(app) {
   app.get("/users/public/:username", getPublicUsername);
   app.put("/users/:username", updateUser);
   app.get("/influencers", findInfluencers);
+  app.post("/follow/:influencer", addFollower);
 }
 export default UserRoutes;

@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
     instagram: String,
     website: String,
     bio: String,
+    followers: {type: {type: String}, "default": []},
     role: {
       type: String,
       enum: ["follower", "influencer"],

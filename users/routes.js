@@ -57,7 +57,7 @@ function UserRoutes(app) {
 
   const getPublic = async (req,res) => {
     const user = req.session["currentUser"];
-    res.json({username: user.username, role: user.role, bio: user.bio, website: user.website, instagram: user.instagram});
+    res.json({firstName: user.firstName, lastName: user.lastName, avatar: user.avatar, username: user.username, role: user.role, bio: user.bio, website: user.website, instagram: user.instagram});
   }
 
   const getPublicUsername = async (req,res) => {

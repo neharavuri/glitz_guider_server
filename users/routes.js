@@ -62,7 +62,12 @@ function UserRoutes(app) {
   const getPublicUsername = async (req,res) => {
     const {username} = req.params;
     const user = await dao.findUserByUsername(username);
-    res.json({username: user.username, role: user.role, bio: user.bio, website: user.website, instagram: user.instagram});
+    if (user) {
+      res.json({username: user.username, role: user.role, bio: user.bio, website: user.website, instagram: user.instagram});
+    }
+    else {
+      res.status(400).json("Username not found");
+    }
   }
 
   const addFollower = async (req, res) => {

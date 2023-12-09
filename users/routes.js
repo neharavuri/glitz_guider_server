@@ -63,7 +63,7 @@ function UserRoutes(app) {
     const {username} = req.params;
     const user = await dao.findUserByUsername(username);
     if (user) {
-      res.json({username: user.username, role: user.role, bio: user.bio, website: user.website, instagram: user.instagram});
+      res.json({firstName: user.firstName, lastName: user.lastName, avatar: user.avatar, username: user.username, role: user.role, bio: user.bio, website: user.website, instagram: user.instagram});
     }
     else {
       res.status(400).json("Username not found");

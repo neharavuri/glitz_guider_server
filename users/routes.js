@@ -119,6 +119,6 @@ function UserRoutes(app) {
   app.post("/follow/:influencer", addFollower);
   app.get("/following/:username", getFollowing);
   app.get("/followers/:username", getFollowers);
-  app.post("/unfollow/:influencer", removeFollower);
+  //app.post("/unfollow/:influencer", removeFollower);
 }
 export default UserRoutes;

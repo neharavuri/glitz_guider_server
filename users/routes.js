@@ -80,6 +80,30 @@ function UserRoutes(app) {
     req.session["currentUser"] = update;
     res.json(status);
   }
+
+  const getFollowing = async (req, res) => {
+    const {username} = req.params;
+    const user = await dao.findUserByUsername(username);
+    if (user) {
+      res.json(user.following);
+    }
+    else {
+      res.status(400).json("username not found");
+    }
+  }
+
+  const getFollowers = async (req,res) => {
+    const {username} = req.params;
+    const user = await dao.findUserByUsername(username);
+    if (user) {
+      res.json(user.followers);
+    }
+    else {
+      res.status(400).json("username not found");
+    }
+  }
+
+
   //app.post("/api/users", createUser);
   app.get("/users", findAllUsers);
   //app.get("/api/users/:userId", findUserById);
@@ -93,5 +117,8 @@ function UserRoutes(app) {
   app.put("/users/:username", updateUser);
   app.get("/influencers", findInfluencers);
   app.post("/follow/:influencer", addFollower);
+  app.get("/following/:username", getFollowing);
+  app.get("/followers/:username", getFollowers);
+  app.post("/unfollow/:influencer", removeFollower);
 }
 export default UserRoutes;

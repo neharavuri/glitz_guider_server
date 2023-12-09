@@ -1,5 +1,7 @@
 import { response } from "express";
 import * as dao from "./dao.js";
+import * as userDao from "../users/dao.js";
+
 function BlogRoutes(app) {
 
   const getReviews = async (req,res) => {
@@ -20,8 +22,12 @@ function BlogRoutes(app) {
   
   const getReviewsByProduct = async (req, res) => {
     const {pid} = req.params;
-    const reviews = await dao.findReviewsByProductId(pid);
-    console.log(reviews);
+    let reviews = await dao.findReviewsByProductId(pid);
+    reviews = await Promise.all(reviews.map(async function (r) {
+      const username = r.username;
+      const user = await userDao.findUserByUsername(username);
+      return ({ username: username, review: r.review, pid: r.pid, firstName: user.firstName, lastName: user.lastName, avatar: user.avatar });
+    }));
     res.json(reviews);
   }
 

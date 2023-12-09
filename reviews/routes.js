@@ -26,7 +26,7 @@ function BlogRoutes(app) {
     reviews = await Promise.all(reviews.map(async function (r) {
       const username = r.username;
       const user = await userDao.findUserByUsername(username);
-      return ({ username: username, review: r.review, pid: r.pid, firstName: user.firstName, lastName: user.lastName, avatar: user.avatar });
+      return ({ _id: r._id, username: username, review: r.review, pid: r.pid, firstName: user.firstName, lastName: user.lastName, avatar: user.avatar });
     }));
     res.json(reviews);
   }

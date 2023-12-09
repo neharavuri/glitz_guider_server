@@ -81,6 +81,17 @@ function UserRoutes(app) {
     res.json(status);
   }
 
+  const removeFollowing = async (req, res) => {
+    const {influencer} = req.params;
+    const influencerUser = await dao.findUserByUsername(influencer);
+    const user = req.session["currentUser"];
+    const status = await dao.removeFollower(user, influencerUser);
+    const secStatus = await dao.removeFollowing(user, influencerUser);
+    const update = await dao.findUserByUsername(user.username);
+    req.session["currentUser"] = update;
+    res.json(status);
+  }
+
   const getFollowing = async (req, res) => {
     const {username} = req.params;
     const user = await dao.findUserByUsername(username);
@@ -104,6 +115,7 @@ function UserRoutes(app) {
   }
 
 
+
   //app.post("/api/users", createUser);
   app.get("/users", findAllUsers);
   //app.get("/api/users/:userId", findUserById);
@@ -119,6 +131,6 @@ function UserRoutes(app) {
   app.post("/follow/:influencer", addFollower);
   app.get("/following/:username", getFollowing);
   app.get("/followers/:username", getFollowers);
-  //app.post("/unfollow/:influencer", removeFollower);
+  app.post("/unfollow/:influencer", removeFollowing);
 }
 export default UserRoutes;

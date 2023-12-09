@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
     website: String,
     bio: String,
     followers: {type: [String], default: []},
+    following: {type: [String], default: []},
     role: {
       type: String,
       enum: ["follower", "influencer"],

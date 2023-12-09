@@ -73,9 +73,9 @@ function UserRoutes(app) {
   const addFollower = async (req, res) => {
     const {influencer} = req.params;
     const influencerUser = await dao.findUserByUsername(influencer);
-    const user = await dao.findUserByUsername("nravuri");
-    console.log(user);
+    const user = req.session["currentUser"];
     const status = await dao.addFollower(user, influencerUser);
+    const secStatus = await dao.addFollowing(user, influencerUser);
     res.json(status);
   }
   //app.post("/api/users", createUser);

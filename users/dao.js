@@ -17,3 +17,7 @@ export const addFollower = (follower, influencer) => model.updateOne(
   { _id: influencer._id }, 
   { $push: { followers: follower.username } }
 );
+export const addFollowing = (follower, influencer) => model.updateOne(
+  { _id: follower._id }, 
+  { $push: { following: influencer.username } }
+);

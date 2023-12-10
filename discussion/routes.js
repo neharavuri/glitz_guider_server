@@ -3,8 +3,8 @@ import * as userDao from "../users/dao.js";
 function DiscussionRoutes(app) {
     const getPosts = async (req,res) => {
         let posts = await dao.findAllPosts();
-        posts = Promise.all(posts.map(async function (post) {
-            const user = userDao.findUserByUsername(post.username);
+        posts = await Promise.all(posts.map(async function (post) {
+            const user = await userDao.findUserByUsername(post.username);
             return {firstName: user.firstName, lastName: user.lastName, avatar: user.avatar,
             username: post.username, title: post.title, body: post.body, replies: post.replies};
         }))

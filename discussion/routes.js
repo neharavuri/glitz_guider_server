@@ -9,11 +9,11 @@ function DiscussionRoutes(app) {
         const {username} = req.params;
         const user = userDao.findUserByUsername(username);
         const add = {firstName: user.firstName, lastName: user.lastName, avatar: user.avatar};
-        req.body = {
+        const newBody = {
             ...add,
             ...req.body
         };
-        const post = dao.createPost(req.body);
+        const post = dao.createPost(newBody);
         res.json(post);
     }
     const updatePost = async (req, res) => {

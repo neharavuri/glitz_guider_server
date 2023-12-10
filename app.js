@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import UserRoutes from "./users/routes.js";
 import BlogRoutes from "./reviews/routes.js";
 import session from "express-session";
+import DiscussionRoutes from "./discussion/routes.js";
 mongoose.connect(
   "mongodb+srv://neha:ravuri@kanbas.xggi1tt.mongodb.net/glitz_guide?retryWrites=true&w=majority"
 );
@@ -27,4 +28,5 @@ app.use(session(sessionOptions));
 Search(app);
 UserRoutes(app);
 BlogRoutes(app);
+DiscussionRoutes(app);
 app.listen(4000);

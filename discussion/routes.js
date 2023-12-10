@@ -18,7 +18,7 @@ function DiscussionRoutes(app) {
     }
     const updatePost = async (req, res) => {
         const {id} = req.params;
-        const post = dao.updatePost(id, req.body);
+        const post = await dao.updatePost(id, req.body);
         res.json(post);
     }
     app.get("/discussion", getPosts);

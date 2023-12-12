@@ -25,14 +25,14 @@ function ReplyRoutes(app) {
         res.json(reply);
     }
     const deleteReply = async (req, res) => {
-        const {rid} = req.params;
+        const {id} = req.params;
         const status = await dao.deleteReply(id);
         res.json(status);
     }
     app.get("/replies/:did", getReplies);
     app.post("/replies/:did", writeReply);
     app.put("/replies/:rid", updateReply);
-    app.delete("/replies/:rid", deleteReply);
+    app.delete("/replies/:id", deleteReply);
 
 }
 export default ReplyRoutes;

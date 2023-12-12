@@ -4,6 +4,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import UserRoutes from "./users/routes.js";
 import BlogRoutes from "./reviews/routes.js";
+import ReplyRoutes from "./replies/routes.js";
 import session from "express-session";
 import DiscussionRoutes from "./discussion/routes.js";
 mongoose.connect(
@@ -28,5 +29,6 @@ app.use(session(sessionOptions));
 Search(app);
 UserRoutes(app);
 BlogRoutes(app);
+ReplyRoutes(app);
 DiscussionRoutes(app);
 app.listen(4000);

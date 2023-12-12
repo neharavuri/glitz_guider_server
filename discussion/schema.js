@@ -5,8 +5,7 @@ const discussionSchema = new mongoose.Schema({
     lastName: String,
     avatar: String,
     title: String,
-    body: String,
-    replies: {type: [String], default: []}
+    body: String
   },
   { collection: "discussion" });
 export default discussionSchema;

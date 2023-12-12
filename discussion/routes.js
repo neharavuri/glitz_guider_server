@@ -6,7 +6,7 @@ function DiscussionRoutes(app) {
         posts = await Promise.all(posts.map(async function (post) {
             const user = await userDao.findUserByUsername(post.username);
             return {_id: post._id, firstName: user.firstName, lastName: user.lastName, avatar: user.avatar,
-            username: post.username, title: post.title, body: post.body, replies: post.replies};
+            username: post.username, title: post.title, body: post.body};
         }))
         res.json(posts);
       }

@@ -26,7 +26,14 @@ function DiscussionRoutes(app) {
         const status = await dao.deletePost(id);
         res.json(status);
     }
+
+    const getPostsByUsername = async (req, res) => {
+        const {username} = req.params;
+        const posts = await dao.findPostsByUsername(username);
+        res.json(posts);
+    }
     app.get("/discussion", getPosts);
+    app.get("/discussion/:username", getPostsByUsername);
     app.post("/discussion/new/:username", writePost);
     app.put("/discussion/:id", updatePost);
     app.delete("/discussion/:id", deletePost);
